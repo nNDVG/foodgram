@@ -16,7 +16,7 @@ def index(request):
     if not cur_tags:
         cur_tags = Tag.objects.values_list('slug', flat=True)
     all_tags = Tag.objects.all()
-    recipes = Recipe.objects.filter(tags__slug__in=cur_tags).distinct()
+    recipes = Recipe.objects.filter(tags__slug__in=cur_tags).order_by('-pub_date')
     paginator = Paginator(recipes, 6)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
