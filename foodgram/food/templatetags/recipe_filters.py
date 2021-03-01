@@ -35,3 +35,9 @@ def tags_filter(request, tag):
         new_request.appendlist('tags', tag.slug)
     return new_request.urlencode()
 
+
+@register.filter(name='couter')
+def couter(request, user_id):
+    count = ShoppingList.objects.filter(user=user_id).count()
+    return count
+

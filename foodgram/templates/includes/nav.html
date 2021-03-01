@@ -7,7 +7,7 @@
             <li class="nav__item"><a href="{% url 'follow_index' %}" class="nav__link link">Мои подписки</a></li>
             <li class="nav__item"><a href="{% url 'new_recipe' %}" class="nav__link link">Создать рецепт</a></li>
             <li class="nav__item"><a href="{% url 'favorite' %}" class="nav__link link">Избранное</a></li>
-            <li class="nav__item"><a href="{% url 'shopping_list' %}" class="nav__link link">Список покупок</a> <span class="badge badge_style_blue nav__badge" id="counter">{{ shop_list|length }}</span></li>
+            <li class="nav__item"><a href="{% url 'shopping_list' %}" class="nav__link link">Список покупок</a> <span class="badge badge_style_blue nav__badge" id="counter">{{ request.user|couter:request.user.id }}</span></li>
         </ul>
             <ul class="nav__items list">
                 <li class="nav__item"><a href="{% url 'password_change' %}" class="nav__link link">Изменить пароль</a></li>
