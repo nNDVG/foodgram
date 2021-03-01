@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+{% csrf_token %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Список покупок</title>
+    <link rel="stylesheet" href="{% static './pages/shopList.css' %}">
+</head>
+<body class="body">
+<header class="header">
+    {% include 'includes/nav.html' %}
+</header>
+<main class="main container">
+    <div class="main__header">
+        <h1 class="main__title">Список покупок</h1>
+    </div>
+    <div class="card-list card-list_column">
+        <ul class="shopping-list">
+            {% for element in shop_list %}
+            <li class="shopping-list__item" data-id="{{ element.recipe.id }}">
+                <div class="recipe recipe_reverse">
+                    {% if element.recipe.image %}
+                        <a class="card__title link" href="{% url 'recipe_view' element.recipe.author.username element.recipe.id %}" style="color: black">
+                            <img src="{{ element.recipe.image.url }}" alt="какой-то-текст" class="recipe__image"></a>
+                        {% else %}
+                        <a class="card__title link" href="{% url 'recipe_view' element.recipe.author.username element.recipe.id %}" style="color: black">
+                        <img src="{% static '/images/testCardImg.png' %}" alt="какой-то-текст"
+                             class="recipe__image"></a>
+                        {% endif %}
+                    <h3 class="recipe__title">{{ element.recipe.title }}</h3>
+                    <p class="recipe__text"><span class="icon-time"></span>{{ element.recipe.coocking_time }} мин.</p>
+                </div>
+                <a href="#" class="shopping-list__button link">Удалить</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'download_shop_list' %}"><button class="button button_style_blue">Скачать список</button></a>
+    </div>
+</main>
+{% include 'includes/footer.html' %}
+<script src="{% static './js/config/config.js' %}"></script>
+<script src="{% static './js/components/Header.js' %}"></script>
+<script src="{% static './js/components/ShopList.js' %}"></script>
+<script src="{% static './js/api/Api.js' %}"></script>
+<script src="{% static './js/shopList.js' %}"></script>
+</body>
+</html>

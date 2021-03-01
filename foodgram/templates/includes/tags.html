@@ -1,0 +1,19 @@
+{% load user_filters %}
+{% load recipe_filters %}
+<ul class="tags">
+    <li class="tags__item">
+        {% for tag in all_tags %}
+            <a id="{{ tag.slug }}" class="tags__checkbox tags__checkbox_style_{{ tag.color }}
+            {% if tag.slug in cur_tags %}tags__checkbox_active{% endif %}"
+            href="{{ request.path }}?{{ request|tags_filter:tag }}"></a>
+        {% if tag.slug == 'breakfast' %}
+            <span class="tags__label">{{ tag.name }}</span>
+        {% elif tag.slug == 'lunch' %}
+            <span for="lunch" class="tags__label">{{ tag.name }}</span>
+        {% elif tag.slug == 'dinner' %}
+            <label for="dinner" class="tags__label">{{ tag.name }}</label>
+        {% endif %}
+        {% endfor %}
+    </li>
+</ul>
+
