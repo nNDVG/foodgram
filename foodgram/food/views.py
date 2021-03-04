@@ -3,9 +3,9 @@ from django.core.paginator import Paginator
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
+from django.conf import settings
 
 from users.models import User
-
 from .utils import take_ingredients
 from .forms import RecipeForm
 from .models import Ingredient, Follow, Recipe, RecipeList, ShoppingList, Tag
@@ -17,7 +17,7 @@ def index(request):
         cur_tags = Tag.objects.values_list('slug', flat=True)
     all_tags = Tag.objects.all()
     recipes = Recipe.objects.filter(tags__slug__in=cur_tags).order_by('-pub_date')
-    paginator = Paginator(recipes, 6)
+    paginator = Paginator(recipes, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     context = {
@@ -36,7 +36,7 @@ def profile(request, username):
     all_tags = Tag.objects.all()
     username = get_object_or_404(User, username=username)
     recipes = Recipe.objects.filter(author=username, tags__slug__in=cur_tags).order_by('-pub_date').all()
-    paginator = Paginator(recipes, 6)
+    paginator = Paginator(recipes, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     following = False
@@ -80,7 +80,6 @@ def edit_recipe(request, username, recipe_id):
     if recipe.author != request.user:
         return redirect('recipe_view', username=username, recipe_id=recipe_id)
     form = RecipeForm(request.POST or None, files=request.FILES or None, instance=recipe)
-    print(form)
     if form.is_valid():
         ingredients = take_ingredients(request)
         new_recipe = form.save(commit=False)
@@ -115,7 +114,7 @@ def recipe_view(request, username, recipe_id):
 @login_required
 def follow_index(request):
     follows = Follow.objects.select_related('user', 'author').filter(user=request.user)
-    paginator = Paginator(follows, 6)
+    paginator = Paginator(follows, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return render(request, 'follow.html', {'page': page, 'paginator': paginator})
@@ -128,7 +127,7 @@ def favorite(request):
         cur_tags = Tag.objects.values_list('slug', flat=True)
     all_tags = Tag.objects.all()
     recipe_list = Recipe.objects.filter(favorites__user=request.user, tags__slug__in=cur_tags).order_by('-pub_date').all()
-    paginator = Paginator(recipe_list, 6)
+    paginator = Paginator(recipe_list, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     context = {
