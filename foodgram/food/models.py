@@ -1,6 +1,5 @@
 from django.db import models
-from django.db.models import UniqueConstraint, Q
-
+from django.db.models import Q, UniqueConstraint
 from users.models import User
 
 

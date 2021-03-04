@@ -1,14 +1,14 @@
 from django.contrib import admin
 
-
-from .models import Follow, Favorites, Ingredient, Recipe, RecipeList, ShoppingList, Tag
+from .models import (Favorites, Follow, Ingredient, Recipe, RecipeList,
+                     ShoppingList, Tag)
 
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
 
     def counter_favorite(self, recipe_id):
-        return Favorites.objects.filter(recipe=recipe_id)
+        return Favorites.objects.filter(recipe=recipe_id).count()
 
     counter_favorite.short_description = 'Добавлен в избранное'
     list_display = ('title', 'author', 'id', 'counter_favorite')
@@ -56,4 +56,3 @@ class FavoritesAdmin(admin.ModelAdmin):
 class ShoppingListAdmin(admin.ModelAdmin):
     list_filter = ['user', 'recipe']
     search_fields = ('user',)
-

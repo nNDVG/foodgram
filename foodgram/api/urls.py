@@ -2,7 +2,6 @@ from django.urls import path
 
 from . import views
 
-
 urlpatterns = [
     path("favorites", views.Favorite.as_view()),
     path("favorites/<int:recipe_id>", views.Favorite.as_view()),

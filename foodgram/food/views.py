@@ -1,14 +1,14 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Sum
-from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
-from django.conf import settings
-
+from django.shortcuts import get_object_or_404, redirect, render
 from users.models import User
-from .utils import take_ingredients
+
 from .forms import RecipeForm
-from .models import Ingredient, Follow, Recipe, RecipeList, ShoppingList, Tag
+from .models import Follow, Ingredient, Recipe, RecipeList, ShoppingList, Tag
+from .utils import take_ingredients
 
 
 def index(request):

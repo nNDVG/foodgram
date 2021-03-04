@@ -2,9 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views import View
+from food.models import Favorites, Follow, Ingredient, Recipe, ShoppingList
 from rest_framework.utils import json
-
-from food.models import Ingredient, Favorites, Follow, ShoppingList, Recipe
 from users.models import User
 
 

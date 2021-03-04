@@ -2,8 +2,6 @@ asgiref==3.3.1
 Django==3.1.6
 django-environ==0.4.5
 django-filter==2.4.0
-django-multiselectfield==0.1.12
-django-select-multiple-field==0.4.2
 djangorestframework==3.12.2
 Markdown==3.3.3
 Pillow==8.1.0
