@@ -21,6 +21,7 @@ services:
     volumes:
       - static_volumes:/code/static
       - media_volumes:/code/media
+      -
     env_file:
       - ./.env
 
