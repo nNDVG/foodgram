@@ -1,0 +1,28 @@
+{% block content %}
+{% load static %}
+<header>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Вы вышли из аккаунта</title>
+    <link rel="stylesheet" href="{% static './pages/form.css' %}">
+</header>
+<body class="body">
+<main class="main container">
+<div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+        <div class="card">
+            <div class="card-header" align="center">Вы вышли из аккаунта</div>
+            <div class="card-body">
+                <p align="center">Спасибо что воспользовались нашим сайтом. Вы вышли из своей учётной записи. Ждём вас снова!</p>
+            </div>
+            <div class="card-body">
+                <p align="center"><a href="/">Вернуться на главную страницу.</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+</body>
+{% endblock %}
