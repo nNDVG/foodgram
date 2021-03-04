@@ -13,5 +13,4 @@ urlpatterns = [
     path('<str:username>/<int:recipe_id>/', views.recipe_view, name='recipe_view'),
     path('<str:username>/', views.profile, name='profile'),
     path('', views.index, name='index'),
-
 ]

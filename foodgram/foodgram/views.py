@@ -6,7 +6,13 @@ def author(request):
     text = 'Гришин Дмитрий - начинающий Python-разработчик.'
     github = 'https://github.com/nNDVG'
     instagram = 'https://www.instagram.com/grishinkrd/'
-    return render(request, 'about.html', {'text': text, 'headline': headline, 'github': github, 'instagram': instagram})
+    context = {
+        'text': text,
+        'headline': headline,
+        'github': github,
+        'instagram': instagram
+    }
+    return render(request, 'about.html', context)
 
 
 def tech(request):

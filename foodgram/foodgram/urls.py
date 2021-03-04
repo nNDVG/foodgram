@@ -2,13 +2,12 @@ from django.conf import settings
 from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.flatpages import views as ft
 from django.urls import include, path
 
 from . import views
 
-handler404 = views.page_not_found
-handler500 = views.server_error
+handler404 = views.page_not_found # noqa
+handler500 = views.server_error # noqa
 
 urlpatterns = [
     path('about-author/', views.author, name='author'),

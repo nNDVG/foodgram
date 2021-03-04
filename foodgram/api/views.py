@@ -62,4 +62,3 @@ class Ingredients(LoginRequiredMixin, View):
         ingredients = Ingredient.objects.filter(
             title__icontains=query).values('title', 'dimension').order_by('title')
         return JsonResponse(list(ingredients), safe=False)
-

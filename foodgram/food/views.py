@@ -126,7 +126,7 @@ def favorite(request):
     if not cur_tags:
         cur_tags = Tag.objects.values_list('slug', flat=True)
     all_tags = Tag.objects.all()
-    recipe_list = Recipe.objects.filter(favorites__user=request.user, tags__slug__in=cur_tags).order_by('-pub_date').all()
+    recipe_list = Recipe.objects.filter(favorites__user=request.user, tags__slug__in=cur_tags).all()
     paginator = Paginator(recipe_list, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)

@@ -10,4 +10,3 @@ class RecipeForm(ModelForm):
         widgets = {
             "tags": CheckboxSelectMultiple(),
         }
-

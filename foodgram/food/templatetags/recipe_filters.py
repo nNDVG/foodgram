@@ -40,4 +40,3 @@ def tags_filter(request, tag):
 def couter(request, user_id):
     count = ShoppingList.objects.filter(user=user_id).count()
     return count
-
