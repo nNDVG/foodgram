@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from users.models import User
+from users.models import CustomUser
 
 from .forms import RecipeForm
 from .models import Follow, Ingredient, Recipe, RecipeList, ShoppingList, Tag
@@ -34,7 +34,7 @@ def profile(request, username):
     if not cur_tags:
         cur_tags = Tag.objects.values_list('slug', flat=True)
     all_tags = Tag.objects.all()
-    username = get_object_or_404(User, username=username)
+    username = get_object_or_404(CustomUser, username=username)
     recipes = Recipe.objects.filter(author=username, tags__slug__in=cur_tags).order_by('-pub_date').all()
     paginator = Paginator(recipes, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
@@ -55,7 +55,7 @@ def profile(request, username):
 
 @login_required
 def new_recipe(request):
-    user = get_object_or_404(User, username=request.user.username)
+    user = get_object_or_404(CustomUser, username=request.user.username)
     if request.method == 'POST':
         form = RecipeForm(request.POST or None, files=request.FILES or None)
         if form.is_valid():
@@ -106,7 +106,7 @@ def del_recipe(request, username, recipe_id):
 
 
 def recipe_view(request, username, recipe_id):
-    username = get_object_or_404(User, username=username)
+    username = get_object_or_404(CustomUser, username=username)
     recipe = get_object_or_404(Recipe, pk=recipe_id, author__username=username)
     return render(request, 'singlePage.html', {'username': username, 'recipe': recipe})
 

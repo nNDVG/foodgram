@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Q
 
-from users.models import User
+from users.models import CustomUser
 
 
 class Tag(models.Model):
@@ -27,7 +27,7 @@ class Ingredient(models.Model):
 class Recipe(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     author = models.ForeignKey(
-        User, on_delete=models.SET_NULL, blank=True, null=True, related_name='recipe', verbose_name='Автор'
+        CustomUser, on_delete=models.SET_NULL, blank=True, null=True, related_name='recipe', verbose_name='Автор'
     )
     title = models.CharField(max_length=150, verbose_name='Название')
     image = models.ImageField(upload_to='recipe/images', verbose_name='Изображение')
@@ -57,7 +57,7 @@ class RecipeList(models.Model):
 
 class ShoppingList(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='user_shopping_list', verbose_name='Пользователь'
+        CustomUser, on_delete=models.CASCADE, related_name='user_shopping_list', verbose_name='Пользователь'
     )
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name='recipe_shopping_list', verbose_name='Рецепт'
@@ -70,8 +70,8 @@ class ShoppingList(models.Model):
 
 
 class Follow(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='follower')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='follower')
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='following')
 
     class Meta:
         constraints = [
@@ -81,7 +81,7 @@ class Follow(models.Model):
 
 
 class Favorites(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='subscriber')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='subscriber')
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name='favorites')
 
     class Meta:
