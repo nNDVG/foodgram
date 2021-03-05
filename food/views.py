@@ -16,7 +16,7 @@ def index(request):
     if not cur_tags:
         cur_tags = Tag.objects.values_list('slug', flat=True)
     all_tags = Tag.objects.all()
-    recipes = Recipe.objects.filter(tags__slug__in=cur_tags).order_by('-pub_date')
+    recipes = Recipe.objects.filter(tags__slug__in=cur_tags).distinct()
     paginator = Paginator(recipes, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -31,11 +31,9 @@ def index(request):
 
 def profile(request, username):
     cur_tags = request.GET.getlist('tags')
-    if not cur_tags:
-        cur_tags = Tag.objects.values_list('slug', flat=True)
     all_tags = Tag.objects.all()
     username = get_object_or_404(User, username=username)
-    recipes = Recipe.objects.filter(author=username, tags__slug__in=cur_tags).order_by('-pub_date').all()
+    recipes = Recipe.objects.filter(author=username, tags__slug__in=cur_tags).distinct()
     paginator = Paginator(recipes, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -126,7 +124,7 @@ def favorite(request):
     if not cur_tags:
         cur_tags = Tag.objects.values_list('slug', flat=True)
     all_tags = Tag.objects.all()
-    recipe_list = Recipe.objects.filter(favorites__user=request.user, tags__slug__in=cur_tags).all()
+    recipe_list = Recipe.objects.filter(favorites__user=request.user, tags__slug__in=cur_tags).distinct()
     paginator = Paginator(recipe_list, settings.POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)

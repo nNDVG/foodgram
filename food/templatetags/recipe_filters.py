@@ -1,5 +1,5 @@
 from django import template
-from food.models import Favorites, Follow, ShoppingList
+from food.models import Favorites, Follow, ShoppingList, Tag
 
 register = template.Library()
 
@@ -27,6 +27,11 @@ def get_filter_values(value):
 @register.filter(name='tags_filter')
 def tags_filter(request, tag):
     new_request = request.GET.copy()
+    if not new_request.getlist('tags'):
+        filters = list(Tag.objects.values_list('slug', flat=True))
+        filters.remove(tag.slug)
+        new_request.setlist('tags', filters)
+        return new_request.urlencode()
     if tag.slug in request.GET.getlist('tags'):
         filters = new_request.getlist('tags')
         filters.remove(tag.slug)
