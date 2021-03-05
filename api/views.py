@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.views import View
 from food.models import Favorites, Follow, Ingredient, Recipe, ShoppingList
 from rest_framework.utils import json
-from users.models import CustomUser
+from users.models import User
 
 
 class Favorite(LoginRequiredMixin, View):
@@ -27,13 +27,13 @@ class Subscribe(LoginRequiredMixin, View):
 
     def post(self, request):
         request_body = json.loads(request.body)
-        author = get_object_or_404(CustomUser, id=int(request_body['id']))
+        author = get_object_or_404(User, id=int(request_body['id']))
         user = request.user
         Follow.objects.get_or_create(user=user, author=author)
         return JsonResponse({'success': True})
 
     def delete(self, request, author_id):
-        author = get_object_or_404(CustomUser, id=author_id)
+        author = get_object_or_404(User, id=author_id)
         user = request.user
         Follow.objects.filter(user=user, author=author).delete()
         return JsonResponse({'success': True})
