@@ -1,6 +1,5 @@
 .git/*
 sent_emails
-static
 env/
 venv/
 .venv

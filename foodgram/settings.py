@@ -29,9 +29,6 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'users',
-    'food',
-    'api',
-    'sorl.thumbnail',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -42,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'rest_framework',
+    'sorl.thumbnail',
+    'food',
+    'api',
 
 ]
 
