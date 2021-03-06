@@ -39,4 +39,4 @@ To perform only migrations, run the command:
 To create a superuser system, run the command:
 docker-compose exec web python manage.py creates superuser
 
-An example of the service can be viewed at https://130.193.34.55/
+An example of the service can be viewed at https://84.201.155.217/
