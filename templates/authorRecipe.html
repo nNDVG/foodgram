@@ -18,7 +18,7 @@
 </header>
     <main class="main container">
         <div class="main__header">
-            <h1 class="main__title">{{ username.name }}</h1>
+            <h1 class="main__title">{% firstof username.name  username.username %}</h1>
             {% include 'includes/tags.html' %}
         </div>
         <div class="author-subscribe" data-author="{{ username.id }}">
@@ -57,20 +57,8 @@
                 </div>
             </div>
             <div class="card__footer">
-                {% if request.user.is_authenticated %}
-                {% if recipe|bag_filter:request.user %}
-                <button class="button button_style_light-blue-outline" name="purchases"><span class="icon-check button__icon"></span>Рецепт добавлен</button>
-                {% else %}
-                <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
-                {% endif %}
-                {% if recipe|favorite_filter:request.user %}
-                <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
-                {% else %}
-                <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
-                {% endif %}
-                {% else %}
-                <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span><a href="{% url 'signup' %}" style="color: black">Добавить в покупки</a></button>
-                {% endif %}
+                {% include 'includes/purchase_button.html' %}
+                {% include 'includes/favorite_button.html' %}
             </div>
         </div>
     {% endfor %}

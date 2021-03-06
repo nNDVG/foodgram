@@ -23,7 +23,7 @@
         {% for item in page %}
         <div class="card-user" data-author="{{ item.author.id }}">
         <div class="card-user__header">
-            <h2 class="card-user__title"><a class="card__title link" href="{% url 'profile' item.author.username %}" style="color: black">{{ item.author.name }}</a></h2>
+            <h2 class="card-user__title"><a class="card__title link" href="{% url 'profile' item.author.username %}" style="color: black">{% firstof item.author.name item.author.username %}</a></h2>
         </div>
         <div class="card-user__body">
             <ul class="card-user__items">

@@ -42,22 +42,12 @@
                     </ul>
                 <div class="card__items card__items_column">
                     <p class="card__text"><span class="icon-time"></span> {{ recipe.coocking_time }} мин.</p>
-                    <p class="card__text"><span class="icon-user"></span> <a href="{% url 'recipe_view' recipe.author.username recipe.id %}" style="color: black">{{ recipe.author.name }}</a></p>
+                    <p class="card__text"><span class="icon-user"></span> <a href="{% url 'recipe_view' recipe.author.username recipe.id %}" style="color: black">{% firstof recipe.author.name recipe.author.username %}</a></p>
                 </div>
             </div>
             <div class="card__footer">
-                {% if recipe|bag_filter:request.user %}
-                <button class="button button_style_light-blue-outline" name="purchases"><span class="icon-check button__icon"></span>Рецепт добавлен</button>
-                {% else %}
-                <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
-                {% endif %}
-                {% if request.user.is_authenticated %}
-                {% if recipe|favorite_filter:request.user %}
-                <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
-                {% else %}
-                <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
-                {% endif %}
-                {% endif %}
+                {% include 'includes/purchase_button.html' %}
+                {% include 'includes/favorite_button.html' %}
             </div>
         </div>
     {% endfor %}

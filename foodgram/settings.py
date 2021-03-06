@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'rest_framework',
     'sorl.thumbnail',
-
+    'sendgrid'
 ]
 
 MIDDLEWARE = [
@@ -144,10 +144,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = 'index'
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SITE_ID = 1
 
 POSTS_PER_PAGE = 6
 
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+
+DEFAULT_FROM_EMAIL = 'yafoodgram@yandex.ru'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

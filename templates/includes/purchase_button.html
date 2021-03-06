@@ -1,0 +1,11 @@
+{% load user_filters %}
+{% load recipe_filters %}
+{% if request.user.is_authenticated %}
+{% if recipe|bag_filter:request.user %}
+<button class="button button_style_light-blue-outline" name="purchases"><span class="icon-check button__icon"></span>Рецепт добавлен</button>
+{% else %}
+<button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
+{% endif %}
+{% else %}
+<button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span><a href="{% url 'signup' %}" style="color: black">Добавить в покупки</a></button>
+{% endif %}

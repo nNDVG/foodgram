@@ -1,7 +1,12 @@
 def take_ingredients(request):
+    """
+    We use this function to get ingredients from
+    our POST request when creating / editing recipes.
+    """
     ingredients = {}
-    for key, ingredient_name in request.POST.items():
-        if "nameIngredient" in key:
-            number_ingredient = key.split("_")
-            ingredients[ingredient_name] = int(request.POST[f"valueIngredient_{number_ingredient[1]}"])
+    for key in request.POST:
+        if key.startswith(f'nameIngredient_'):
+            num = key[15:]
+            if num.isdecimal():
+                ingredients[request.POST[key]] = request.POST[f'valueIngredient_{num}']
     return ingredients

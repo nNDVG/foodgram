@@ -40,7 +40,4 @@ To perform only migrations, run the command:
 To create a superuser system, run the command:
 docker-compose exec web python manage.py creates superuser
 
-
-
-
 An example of the service can be viewed at http://yandex-backend7.ml/

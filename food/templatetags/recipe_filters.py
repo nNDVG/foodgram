@@ -1,4 +1,5 @@
 from django import template
+
 from food.models import Favorites, Follow, ShoppingList, Tag
 
 register = template.Library()

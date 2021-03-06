@@ -5,6 +5,13 @@ from .models import (Favorites, Follow, Ingredient, Recipe, RecipeList,
 
 
 class IngredientInline(admin.TabularInline):
+    '''
+    Allows to edit related objects on the same page as
+    the parent object. In our projects, we use a linked table
+    with the amount of ingredients, so in order to create a
+    recipe on one page in the admin panel, we need to pull this
+    model into a separate field.
+    '''
     extra = 0
     min_num = 1
     model = RecipeList
