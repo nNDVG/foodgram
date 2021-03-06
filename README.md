@@ -1,6 +1,6 @@
 Project: Foodgram "Food Assistant"
 This is an online service where users can publish recipes, subscribe to the publication of other users, add recipes they like to the favorites list, comment on recipes from other authors, and before going to the store download a pdf summary of the products required to prepare one or more selected dishes.
-Tech stack
+Tech stack:
 
     Python
     Django
