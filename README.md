@@ -1,4 +1,3 @@
-https://github.com/nNDVG/foodgram-project/workflows/foodgram-workflow/badge.svg
 Project: Foodgram "Food Assistant"
 This is an online service where users can publish recipes, subscribe to the publication of other users, add recipes they like to the favorites list, comment on recipes from other authors, and before going to the store download a pdf summary of the products required to prepare one or more selected dishes.
 Tech stack
@@ -33,10 +32,10 @@ To install on a local computer, you must:
 The installation will launch three containers: the first is foodgram + gunicorn, the second is the PostgreSQL database, and the third is the NGINX web server configured at http: // localhost.
 
 To fill the database with recipes and tags, enter the following command:
-    docker-compose exec web /bin/sh builddatabase.sh
+    * docker-compose exec web /bin/sh builddatabase.sh
 
 To perform only migrations, run the command:
-    docker-compose exec web /bin/sh migrate.sh
+    * docker-compose exec web /bin/sh migrate.sh
 To create a superuser system, run the command:
 docker-compose exec web python manage.py creates superuser
 
