@@ -32,10 +32,10 @@ To install on a local computer, you must:
 The installation will launch three containers: the first is foodgram + gunicorn, the second is the PostgreSQL database, and the third is the NGINX web server configured at http: // localhost.
 
 To fill the database with recipes and tags, enter the following command:
-    * docker-compose exec web /bin/sh builddatabase.sh
+     docker-compose exec web /bin/sh builddatabase.sh
 
 To perform only migrations, run the command:
-    * docker-compose exec web /bin/sh migrate.sh
+     docker-compose exec web /bin/sh migrate.sh
 To create a superuser system, run the command:
 docker-compose exec web python manage.py creates superuser
 
