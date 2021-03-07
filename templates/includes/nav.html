@@ -7,7 +7,7 @@
             <li class="nav__item{% if request.resolver_match.url_name == 'follow_index' %} nav__item_active{% endif %}"><a href="{% url 'follow_index' %}" class="nav__link link">Мои подписки</a></li>
             <li class="nav__item{% if request.resolver_match.url_name == 'new_recipe' or request.resolver_match.url_name == 'edit_recipe' %} nav__item_active{% endif %}"><a href="{% url 'new_recipe' %}" class="nav__link link">Создать рецепт</a></li>
             <li class="nav__item{% if request.resolver_match.url_name == 'favorite' %} nav__item_active{% endif %}"><a href="{% url 'favorite' %}" class="nav__link link">Избранное</a></li>
-            <li class="nav__item{% if request.resolver_match.url_name == 'shopping_list' %} nav__item_active{% endif %}"><a href="{% url 'shopping_list' %}" class="nav__link link">Список покупок</a>{% if request.user|couter:request.user.id > 0 %}<span class="badge badge_style_blue nav__badge" id="counter">{{ request.user|couter:request.user.id }}</span>{% else %}{% endif %}</li>
+            <li class="nav__item{% if request.resolver_match.url_name == 'shopping_list' %} nav__item_active{% endif %}"><a href="{% url 'shopping_list' %}" class="nav__link link">Список покупок</a><span class="badge badge_style_blue nav__badge" id="counter">{% if request.user|couter:request.user.id > 0 %}{{ request.user|couter:request.user.id }}{% else %}{%endif%}</span></li>
         </ul>
             <ul class="nav__items list">
                 <li class="nav__item"><a href="{% url 'password_change' %}" class="nav__link link">Изменить пароль</a></li>
