@@ -2,6 +2,7 @@
 <html lang="en">
 {% load static %}
 {% csrf_token %}
+{% load recipe_filters %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -38,10 +39,10 @@
             </li>
             {% endfor %}
         </ul>
-        {% if not shop_list %}
-        <a href="{% url 'index' %}"><button class="button button_style_blue">Добавить покупки</button></a>
-        {else}
+        {% if request.user|couter:request.user.id %}
         <a href="{% url 'download_shop_list' %}"><button class="button button_style_blue">Скачать список</button></a>
+        {% else %}
+        <a href="{% url 'index' %}"><button class="button button_style_blue">Добавить покупки</button></a>
         {% endif %}
     </div>
 </main>
