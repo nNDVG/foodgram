@@ -61,8 +61,10 @@ def new_recipe(request):
     user = get_object_or_404(User, username=request.user.username)
     if request.method == 'POST':
         form = RecipeForm(request.POST or None, files=request.FILES or None)
+        ingredients = take_ingredients(request)  # get ingredients from request
+        if not ingredients:
+            form.add_error(None, "Добавьте ингредиенты")
         if form.is_valid():
-            ingredients = take_ingredients(request)
             new_recipe = form.save(commit=False)
             new_recipe.author = user
             new_recipe.save()
@@ -88,8 +90,10 @@ def edit_recipe(request, username, recipe_id):
     if recipe.author != request.user:
         return redirect('recipe_view', username=username, recipe_id=recipe_id)
     form = RecipeForm(request.POST or None, files=request.FILES or None, instance=recipe)
+    ingredients = take_ingredients(request)  # get ingredients from request
+    if not ingredients:
+        form.add_error(None, "Добавьте ингредиенты")
     if form.is_valid():
-        ingredients = take_ingredients(request)
         new_recipe = form.save(commit=False)
         new_recipe.author = request.user
         new_recipe.save()
