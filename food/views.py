@@ -106,9 +106,8 @@ def edit_recipe(request, username, recipe_id):
             add_ingredient.save()
         form.save_m2m()
         return redirect('index')
-    ingredients = RecipeList.objects.filter(recipe=recipe)
     form = RecipeForm(request.POST or None, files=request.FILES or None, instance=recipe)
-    return render(request, 'formChangeRecipe.html', {'form': form, 'ingredients': ingredients, 'recipe': recipe})
+    return render(request, 'formChangeRecipe.html', {'form': form})
 
 
 @login_required
@@ -172,7 +171,6 @@ def download_shop_list(request):
     ingredients = recipes.values(
         'ingredients__title', 'ingredients__dimension'
     ).annotate(total_amount=Sum('recipelist__amount'))
-    print(ingredients)
     file_data = [
         f"{v['ingredients__title'].capitalize()}: {v['ingredients__dimension']} {v['total_amount']}\n"
         for v in ingredients

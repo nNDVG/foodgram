@@ -55,8 +55,8 @@
                         <label for="cantidad" class="form__label" id="cantidadVal">шт.</label>
                     </div>
                     <div class="form__field-group-ingredientes-container">
-                        {% if ingredients %}
-                            {% for ingredient in ingredients %}
+                        {% if form.instance.recipelist.all %}
+                            {% for ingredient in form.instance.recipelist.all %}
                                 <div class="form__field-item-ingredient" id="ing_{{ ingredient.ingredient.id }}">
                                 <span>{{ ingredient.ingredient.title }} {{ ingredient.amount }}
                                         {{ ingredient.ingredient.dimension }}</span>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="form__footer">
-                <button class="button button_style_blue">Сохранить</button> <a style="margin-left: 2.5em" href="{% url 'del_recipe' recipe.author recipe.id %}" class="form__ingredient-link">Удалить</a>
+                <button class="button button_style_blue">Сохранить</button> <a style="margin-left: 2.5em" href="{% url 'del_recipe' form.instance.author form.instance.pk %}" class="form__ingredient-link">Удалить</a>
             </div>
         </form>
     </div>
