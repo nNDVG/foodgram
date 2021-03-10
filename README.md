@@ -1,6 +1,6 @@
 # Description
 ## Project: Foodgram "Food Assistant"
-## The project was completed as a diploma assignment for the Python-developer Yandex.Practicum.
+## The project was completed as a diploma assignment for the Python-developer Yandex.Practicum
 This is an online service where users can publish recipes, subscribe to the publication of other users, add recipes 
 they like to the favorites list, comment on recipes from other authors, and before going to the store download a 
 txt summary of the products required to prepare one or more selected dishes.
