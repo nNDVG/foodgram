@@ -22,8 +22,10 @@ An example of the service can be viewed at http://130.193.34.188/
   - DB_PASSWORD = postgres
   - DB_HOST = db
   - DB_PORT = 5432
+
 #### To do this, enter the following command and enter the appropriate data (the ones above):
     nano .env 
+
 #### In the <project_name>/foodgram/ project directory, enter the command:
     docker-compose up -d
 
