@@ -5,7 +5,7 @@ def take_ingredients(request):
     """
     ingredients = {}
     for key in request.POST:
-        if key.startswith(f'nameIngredient_'):
+        if key.startswith('nameIngredient_'):
             num = key[15:]
             if num.isdecimal():
                 ingredients[request.POST[key]] = request.POST[f'valueIngredient_{num}']
