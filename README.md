@@ -15,17 +15,16 @@ An example of the service can be viewed at http://130.193.34.188/
 #### Enter the following command:
     docker exec -it foodgram_web_1 bash
     apt update
-    apt install nano 
-
-####You need to create an .env file in which to specify environment variables (for example): 
+    apt install nano
+#### You need to create an .env file in which to specify environment variables (for example): 
   - DB_NAME = postgres
   - DB_USER = postgres
   - DB_PASSWORD = postgres
   - DB_HOST = db
   - DB_PORT = 5432
-####To do this, enter the following command and enter the appropriate data (the ones above):
+#### To do this, enter the following command and enter the appropriate data (the ones above):
     nano .env 
-####In the <project_name>/foodgram/ project directory, enter the command:
+#### In the <project_name>/foodgram/ project directory, enter the command:
     docker-compose up -d
 
 ## Command block for migrating and loading fixtures. 
