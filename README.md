@@ -16,6 +16,7 @@ An example of the service can be viewed at http://130.193.34.188/
     docker exec -it foodgram_web_1 bash
     apt update
     apt install nano 
+
 ####You need to create an .env file in which to specify environment variables (for example): 
   - DB_NAME = postgres
   - DB_USER = postgres
