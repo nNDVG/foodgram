@@ -17,3 +17,12 @@ class RecipeForm(ModelForm):
         ingredients = take_ingredients(self.data)
         if not ingredients:
             raise ValidationError('Необходимо добавить ингредиент')
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image', False)
+        if image:
+            if image.size > 4 * 1024 * 1024:
+                raise ValidationError('Изображение силшком большое')
+            return image
+        else:
+            raise ValidationError('Загрузите изображение')
