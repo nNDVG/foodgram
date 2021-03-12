@@ -11,6 +11,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ recipe.title }}</title>
+    <style>a { text-decoration: none; }</style>
     <link rel="stylesheet" href="{% static 'pages/single.css' %}">
 </head>
 <body class="body">
@@ -33,11 +34,11 @@
                     {% if user.is_authenticated %}
                     <div class="single-card__favorite">
                         {% if recipe|favorite_filter:request.user %}
-                        <button class="button button_style_none" name="favorites"><span
-                                    class="icon-favorite icon-favorite_active"></span></button>
+                        <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_big"></span></button>
+                        <div class="single-card__favorite-tooltip tooltip">Убрать из избранного</div>
                             {% else %}
-                            <button class="button button_style_none" name="favorites" data-out><span
-                                    class="icon-favorite"></span></button>
+                            <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite icon-favorite_big"></span></button>
+                        <div class="single-card__favorite-tooltip tooltip">Добавить в избранное</div>
                         {% endif %}
                         </div>
                         {% endif %}
@@ -53,7 +54,7 @@
                 <div class="single-card__items single-card__items_column">
                     <p class="single-card__text"><span class="icon-time"></span> {{ recipe.coocking_time }} мин.</p>
                     <ul class="single-card__items">
-                        <li class="single-card__item"><p class="single-card__text"><span class="icon-user"></span>{% firstof recipe.author.name recipe.author.username %}</p></li>
+                        <li class="single-card__item"><p class="single-card__text"><span class="icon-user"></span><a href="{% url 'profile' recipe.author.username %}" style="color: black">{% firstof recipe.author.name recipe.author.username %}</a></p></li>
                         {% if request.user == recipe.author %}
                         <li class="single-card__item"><a style="margin-left: 2.5em" href="{% url 'edit_recipe' recipe.author.username recipe.id %}" class="single-card__text">Редактировать рецепт</a></li>
                         {% endif %}

@@ -61,9 +61,7 @@ def new_recipe(request):
     user = get_object_or_404(User, username=request.user.username)
     if request.method == 'POST':
         form = RecipeForm(request.POST or None, files=request.FILES or None)
-        ingredients = take_ingredients(request)  # get ingredients from request
-        if not ingredients:
-            form.add_error(None, "Добавьте ингредиенты")
+        ingredients = take_ingredients(request.POST)  # get ingredients from request
         if form.is_valid():
             new_recipe = form.save(commit=False)
             new_recipe.author = user
@@ -172,7 +170,7 @@ def download_shop_list(request):
         'ingredients__title', 'ingredients__dimension'
     ).annotate(total_amount=Sum('recipelist__amount'))
     file_data = [
-        f"{v['ingredients__title'].capitalize()}: {v['ingredients__dimension']} {v['total_amount']}\n"
+        f"{str(v['ingredients__title']).capitalize()}: {v['ingredients__dimension']} {v['total_amount']}\n"
         for v in ingredients
     ]
     response = HttpResponse(file_data, content_type='application/text charset=utf-8')

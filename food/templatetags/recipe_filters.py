@@ -46,3 +46,20 @@ def couter(request, user_id):
     """Count recipes in bag"""
     count = ShoppingList.objects.filter(user=user_id).count()
     return count
+
+
+@register.filter(name='word_end_filter')
+def word_end_filter(word, count):
+    """Word end filter"""
+    count = count - 3
+    remainder_ten = count % 10
+    remainder_hundred = count % 100
+    if remainder_ten == 0:
+        word += 'ов'
+    elif remainder_ten == 1 and remainder_hundred != 11:
+        word += ''
+    elif remainder_ten < 5 and remainder_hundred not in [11, 12, 13, 14]:
+        word += 'а'
+    else:
+        word += 'ов'
+    return word

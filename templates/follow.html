@@ -1,6 +1,7 @@
 <!doctype html>
 {% load static %}
 {% csrf_token %}
+{% load recipe_filters %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +9,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Мои подписки</title>
+    <style>a { text-decoration: none; }</style>
     <link rel="stylesheet" href="{% static './pages/myFollow.css' %}">
 </head>
 <body class="body">
@@ -43,13 +45,11 @@
                     </div>
                 </li>
                 {% endfor %}
-                <li class="card-user__item">
                     <a href="{% url 'profile' item.author.username %}" class="card-user__link link">
-                        {% if item.author.recipes.count > 3 %}
-                        Еще {{ item.author.recipes.count|add:"-3" }} рецепт...
+                        {% if item.author.recipe.count > 3 %}
+                        Еще {{ item.author.recipe.count|add:"-3" }} {{ 'рецепт'|word_end_filter:item.author.recipe.count }}...
                         {% endif %}
                     </a>
-                </li>
             </ul>
         </div>
         <div class="card-user__footer">

@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.core.validators import MinValueValidator
 
 
 class Tag(models.Model):
@@ -44,7 +45,7 @@ class Recipe(models.Model):
         Ingredient, through='RecipeList', verbose_name='Ингредиенты', blank=False
     )
     tags = models.ManyToManyField(Tag, verbose_name='Тег', related_name='recipe')
-    coocking_time = models.PositiveIntegerField(verbose_name='Время готовки')
+    coocking_time = models.PositiveIntegerField(verbose_name='Время готовки', validators=[MinValueValidator(1)])
 
     class Meta:
         verbose_name = 'Рецепт'
@@ -64,6 +65,10 @@ class RecipeList(models.Model):
         Ingredient, on_delete=models.CASCADE, related_name='ingredients', verbose_name='Ингредиент'
     )
     amount = models.PositiveIntegerField(default=1, verbose_name='Количество')
+
+    class Meta:
+        verbose_name = 'Количество ингредиентов для рецептов'
+        verbose_name_plural = 'Количества ингредиентов для рецептов'
 
 
 class ShoppingList(models.Model):

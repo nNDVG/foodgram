@@ -85,6 +85,9 @@
 @import "../blocks/icon-favorite/_active/icon-favorite_active.css";
 @import "../blocks/icon-check/icon-check.css";
 
+@import "../blocks/single-card/__favorite/single-card__favorite.css";
+@import "../blocks/single-card/__favorite-tooltip/single-card__favorite-tooltip.css";
+
 * {
     box-sizing: border-box;
 }
