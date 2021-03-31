@@ -6,7 +6,10 @@ they like to the favorites list, comment on recipes from other authors, and befo
 txt summary of the products required to prepare one or more selected dishes.
 The installation will launch three containers: the first is foodgram + gunicorn, the second is the PostgreSQL database, 
 and the third is the NGINX web server configured at http: // localhost.
-An example of the service can be viewed at http://130.193.34.188/
+### What would add:
+- Recipe comments (on the recipe page)
+- Rating for recipes
+- A page for purchases, where a list of what needs to be bought will be displayed with the ability to delete from there products that the user has already put in his shopping cart in the store
 
 # Run
 ## To install on a local computer, you must:
@@ -50,7 +53,7 @@ An example of the service can be viewed at http://130.193.34.188/
  - https://hub.docker.com/u/ndvg/
 
 # Tech stack:
-* Python
+* Python3.x
 * Django
 * Django REST
 * PostgreSQL
