@@ -1,7 +1,7 @@
 # Description
 ## Project: Foodgram "Food Assistant"
 ## The project was completed as a diploma assignment for the Python-developer Yandex.Practicum
-This is an online service where users can publish recipes, subscribe to the publication of other users, add recipes 
+This is an online service for food lovers where users can publish recipes, subscribe to the publication of other users, add recipes 
 they like to the favorites list, comment on recipes from other authors, and before going to the store download a 
 txt summary of the products required to prepare one or more selected dishes.
 The installation will launch three containers: the first is foodgram + gunicorn, the second is the PostgreSQL database, 
@@ -47,10 +47,12 @@ and the third is the NGINX web server configured at http: // localhost.
 * Enter the command:
     docker-compose exec foodgram_web_1 flake8 --max-line-length=119 --exclude=tests,migrations,venv .
 
-
 # Author
  - https://github.com/nNDVG/
  - https://hub.docker.com/u/ndvg/
+### Contacts
+ - Telegram: nNDVG
+ - Email: n.dvg@yandex.ru
 
 # Tech stack:
 * Python3.x
