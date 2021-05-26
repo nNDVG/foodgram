@@ -22,7 +22,7 @@ class RecipeForm(ModelForm):
         image = self.cleaned_data.get('image', False)
         if image:
             if image.size > 4 * 1024 * 1024:
-                raise ValidationError('Изображение силшком большое')
+                raise ValidationError('Изображение слишком большое')
             return image
         else:
             raise ValidationError('Загрузите изображение')
